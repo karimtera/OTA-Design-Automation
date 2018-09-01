@@ -39,22 +39,7 @@ for i = 1:maxNoIter
     else
         Mtemp = designInputPairGivenGBW(input_pair_type,Mtemp.ID,spec.AO,VDStyp,CLeff,spec.GBW,(spec.CMIR_LOW+spec.CMIR_HIGH)/2);
     end
-%     C_GM = Mtemp.GM_ID* Mtemp.ID;
-%     C_GDS = C_GM/2/spec.AO;
-%     while 1
-%         Mtemp.L=lookupL(input_pair_type,Mtemp.GM_ID,C_GDS,Mtemp.ID,VDStyp,VDStyp,1);
-%         gmb_gm=lookup1(input_pair_type,'GMB_GM','GM_ID',Mtemp.GM_ID,'L',Mtemp.L,'VDS',VDStyp,'VSB',VDStyp); 
-%         gmb=gmb_gm*Mtemp.GM_ID*Mtemp.ID;
-%         new_GM_ID=(C_GM-gmb)/Mtemp.ID;
-%         if abs(new_GM_ID - Mtemp.GM_ID) <= 1e-3
-%             break;
-%         else
-%             Mtemp.GM_ID=new_GM_ID;
-%         end
-% %       clear Mtemp;
-%     end
-    VSB = Mtemp.VSB;
-    M(1) = populate(Mtemp.GM_ID, Mtemp.L, Mtemp.ID, input_pair_type, VDStyp, Mtemp.VSB);
+    M(1) = populate(Mtemp.GM_ID, Mtemp.L, Mtemp.ID, input_pair_type, VDStyp, 0);
     M(2) = M(1);
     %% Current mirror load
 
@@ -62,7 +47,6 @@ for i = 1:maxNoIter
 
     % assume input pair and load have same GDS
     Mtemp.GDS = M(1).GDS;
-    VDStyp = 2/3*spec.VDD - (spec.CMIR_HIGH+spec.CMIR_LOW)/2 + M(1).VGS;
     Mtemp.L = lookupL(current_mirror_load_type, 15, Mtemp.GDS, Mtemp.ID, VDStyp, 0, 1);
     if load_type == 'n'
         VGS_temp = spec.CMIR_LOW + M(1).VGS - M(1).VDSAT;
@@ -73,7 +57,7 @@ for i = 1:maxNoIter
 
     % Note that STH is generated for 10um width device, so you cannot get gamma by
     % dividing by M(1).GM
-    M(1).gamma = lookup1(input_pair_type,'STH_GM','L',M(1).L,'VGS',M(1).VGS,'VDS',spec.VDD/3,'VSB',VSB) / (4 * kb * To);
+    M(1).gamma = lookup1(input_pair_type,'STH_GM','L',M(1).L,'VGS',M(1).VGS,'VDS',spec.VDD/3,'VSB',0) / (4 * kb * To);
     Vnin = sqrt(spec.VNOUTRMS ^ 2 * 4 * CLeff / M(1).GM);
     % Find the combination of gamma*GM that meets the spec
     gammaxGM_temp = (Vnin^2 * M(1).GM / (8*kb*To) - M(1).gamma) * M(1).GM;
@@ -105,7 +89,6 @@ end
 Mtemp.ID = spec.IBIAS;
 syms x;
 Mtemp.GDS = double(solve((M(1).GM / (1 + M(1).GM * 2/x) * 1/M(3).GM == spec.AO/spec.CMRR), x));
-VDStyp = (spec.CMIR_HIGH+spec.CMIR_LOW)/2 - M(1).VGS;
 Mtemp.L = lookupL(tail_current_source_type, 15, Mtemp.GDS, Mtemp.ID, VDStyp, 0, 1);
 
 if tail_type == 'p'
