@@ -37,7 +37,7 @@ for i = 1:maxNoIter
 	if spec.GBW == -2
         Mtemp = designInputPairOptimizeGBW(input_pair_type,Mtemp.ID,spec.AO,VDStyp,spec.CIN); 
     else
-        Mtemp = designInputPairGivenGBW(input_pair_type,Mtemp.ID,spec.AO,VDStyp,CLeff,spec.GBW,(spec.CMIR_LOW+spec.CMIR_HIGH)/2);
+        Mtemp = designInputPairGivenGBW(input_pair_type,Mtemp.ID,spec.AO,VDStyp,CLeff,spec.GBW);
     end
     M(1) = populate(Mtemp.GM_ID, Mtemp.L, Mtemp.ID, input_pair_type, VDStyp, 0);
     M(2) = M(1);
