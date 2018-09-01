@@ -1,0 +1,5 @@
+this branch is created for the following reasons:
+
+1) remove the body effect from consideration in all design cases, as it was concluded from the analysis that there is no gain dependance on the body effect.
+
+2) remove the vds calculation part that we added recently, assuming all vds = vdd/3, as the vds doesn't have a big impact on the design for now.
