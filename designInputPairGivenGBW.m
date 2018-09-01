@@ -6,6 +6,5 @@ GM = GBW*2*pi*CL_EFF;
 GDS = GM/2/AO;
 M.GM_ID = GM/ID;
 M.L = lookupL(type,M.GM_ID,GDS,ID,VDS,0,1);
-M.GM_ID = GM_ID;
 M.L = L;
 M.ID = ID;
