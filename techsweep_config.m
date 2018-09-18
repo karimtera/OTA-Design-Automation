@@ -16,9 +16,8 @@ c.modeln = 'nmos';
 c.modelp = 'pmos';
 c.savefilen = 'PTM_180_nch';
 c.savefilep = 'PTM_180_pch';
-c.simcmd = '/usr/local/cadence/MMSIM141/bin/spectre -64 techsweep.scs';
-% Must be set to techsweep_spectre_run.m diretory
-c.outfile = '/home/cadence/Desktop/Project/techsweep_doc_edit/techsweep.raw';
+c.simcmd = '/usr/local/cadence/MMSIM141/bin/spectre -64 techsweep.scs'; 
+c.outfile = '/home/cadence/Desktop/Project/techsweep_doc_edit/techsweep.raw'; % Must be set to techsweep_spectre_run.m directory
 c.sweep = 'sweepvds_sweepvgs-sweep';
 c.sweep_noise = 'sweepvds_noise_sweepvgs_noise-sweep';
 
@@ -36,7 +35,6 @@ c.VGS = c.VGS_min:c.VGS_step:c.VGS_max;
 c.VDS = c.VDS_min:c.VDS_step:c.VDS_max;
 c.VSB = c.VSB_min:c.VSB_step:c.VSB_max;
 c.LENGTH = [(0.2:0.05:0.5) (0.6:0.1:2.0)];
-% c.LENGTH = [(0.2:0.1:0.5)];
 c.WIDTH = 10;
 c.NFING = 2;
 
