@@ -5,8 +5,8 @@ clc;
 % The user should provide the path of the code library
 % Also it validates the path, in order to prevent run time errors1
 OTA1 = setTech('/home/cadence/Desktop/Project/web_matlab/lib'); % set tech path
-if ~OTA1.file(1).state % if technology files couldn't be loaded, then  terminate
-    return;
+if ~OTA1.file(1).state % if technology lookup tables couldn't be loaded, then we still can use the netlist provide us wiith to generate the tables
+    techsweep_spectre_run;
 end
 %% DESIGN MODE SETTING
 % There are three different modes:
