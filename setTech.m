@@ -50,4 +50,5 @@ function DESIGN = setTech(path)
         return;
     end
     
-   DESIGN.file(1).state=1; % this path is valid
+    DESIGN.file(1).folder = pwd; % set the folder in which we can save the tables later after being generated
+    DESIGN.file(1).state=1; % this path is valid
