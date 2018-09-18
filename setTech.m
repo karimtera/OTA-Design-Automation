@@ -40,6 +40,7 @@ function DESIGN = setTech(path)
     
     if DESIGN.file(2).name(1) ~= 'n' && DESIGN.file(2).name(1) ~= 'p' % if the second channel type is not n or p,terminate
         disp('Error: the channel type is not named correctly');
+        DESIGN.file(1).state=0;
         return;
     end
     
@@ -47,6 +48,7 @@ function DESIGN = setTech(path)
         
     if  tech_name ~= DESIGN.file(2).name(2:end) % if the 2 files are not of the same technology, terminate
         disp('Error: Files are not from the same technology');
+        DESIGN.file(1).state=0;
         return;
     end
     
