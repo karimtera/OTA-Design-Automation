@@ -46,7 +46,9 @@ end
 % 4) generate a netlist, rename it with 'netlist'.
 % 5) move it to the working directory.
 % 6) at least run a dc simulation.
-
+if ~DESIGN.netlist % if user's netlist is not found, terminate
+   return;
+end
 user_netlist = fileread('netlist'); % reads the user's netlist
 first = regexp(user_netlist,'include '); % finds all the occurances of the 2nd paramenter inside the 1st one.
 nmos_name = 'MN'; % NMOS name
