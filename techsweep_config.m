@@ -17,7 +17,7 @@ c.modelp = 'pmos';
 c.savefilen = 'nxxxYYY';
 c.savefilep = 'pxxxYYY';
 c.simcmd = '/usr/local/cadence/MMSIM141/bin/spectre -64 techsweep.scs'; 
-c.outfile = '/home/cadence/Desktop/Project/techsweep_doc_edit/techsweep.raw'; % Must be set to techsweep_spectre_run.m directory
+c.outfile = '/home/cadence/Desktop/Project/web_matlab/lib/techsweep.raw'; % Must be set to techsweep_spectre_run.m directory
 c.sweep = 'sweepvds_sweepvgs-sweep';
 c.sweep_noise = 'sweepvds_noise_sweepvgs_noise-sweep';
 
