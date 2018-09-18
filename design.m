@@ -5,6 +5,11 @@ for i=1:11
        return;
    end
 end
+if ~DESIGN.file(1).state
+	DESIGN.file(1).folder = pwd; % pwd returns the current working directory in matlab
+	DESIGN.file(1).name = 'n_x_Y'; % Arbitrary name of the generated nmos LUT
+	DESIGN.file(2).name = 'p_x_Y'; % Arbitrary name of the generated pmos LUT
+end
 %% Loading Technology files
 eval(['cd ' DESIGN.file(1).folder]); % change directory to the technology files path
 load(DESIGN.file(1).name); % load tech files
