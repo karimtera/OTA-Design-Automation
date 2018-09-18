@@ -2,7 +2,8 @@
 % Boris Murmann, Stanford University
 % Tested with MMSIM12.11.134
 % September 12, 2017
-% edited on: September 18, 2018
+% edited by Karim Tera, ASU
+% On September 18, 2018
 
 function c = techsweep_config
 
