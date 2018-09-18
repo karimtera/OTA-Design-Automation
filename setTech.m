@@ -1,7 +1,7 @@
 function DESIGN = setTech(path)
 %   Checks the path of the technology files, if the path is valid then
 %   DESIGN.file(1).state=1, otherwise it equals 0.
-%
+%   if the user's netlist is found, DESIGN.netlist = 1, otherwise it equals 0 
 %   important notes:    
 %   1) technology files should be inside the folder passed to this fuction
 %   and nothing more.
@@ -9,7 +9,9 @@ function DESIGN = setTech(path)
 %      'channelType''minimumLength''ProductionCompany' 
 %   3) channelType is either 'n' or 'p'
 
-
+    DSEIGN.netlist = 1 % suppose the netlist is dound for now
+    
+    if temp.
     if ~isdir(path) % checking if the folder exist
         fprintf('Error: The following folder does not exist:\n%s', path);
         DESIGN.file(1).state=0; % this acts as a flag equals 1 when the path is valid, 0 otherwise
