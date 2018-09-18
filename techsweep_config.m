@@ -14,8 +14,8 @@ c.corner = 'NOM';
 c.temp = 300;
 c.modeln = 'nmos';
 c.modelp = 'pmos';
-c.savefilen = 'PTM_180_nch';
-c.savefilep = 'PTM_180_pch';
+c.savefilen = 'nxxxYYY';
+c.savefilep = 'pxxxYYY';
 c.simcmd = '/usr/local/cadence/MMSIM141/bin/spectre -64 techsweep.scs'; 
 c.outfile = '/home/cadence/Desktop/Project/techsweep_doc_edit/techsweep.raw'; % Must be set to techsweep_spectre_run.m directory
 c.sweep = 'sweepvds_sweepvgs-sweep';
@@ -89,7 +89,21 @@ c.p_noise{2}= {'mp:fn', ''};
 
 
 %% Writing the netlist
-% The netlist has mosfets with constant Width = c.WIDTH, and length = parameter written in 'techsweep_param.scs' and edited by the run code
+% The netlist has mosfets with constant Width = c.WIDTH, and length = parameter written in 'techsweep_param.scs'
+% first the user is asked to make a simple schematic using a specific
+% technology, this schematic should contain:
+% 1) a nmos & a pmos transistor 
+% 2) for the nmos: 
+%       name = 'MN'
+%       length = 'L'
+%       width = 'W'
+% 3) for the pmos: 
+%       name = 'MP'
+%       length = 'L'
+%       width = 'W'
+% 4) generate a netlist, rename it with 'netlist'.
+% 5) move it to the working directory.
+% 6) at least run a dc simulation.
 
 user_netlist = fileread('netlist'); % reads the user's netlist
 first = regexp(user_netlist,'include '); % finds all the occurances of the 2nd paramenter inside the 1st one.
